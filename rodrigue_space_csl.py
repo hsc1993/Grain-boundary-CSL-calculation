@@ -1162,7 +1162,6 @@ def sigma_generate(crystal_matrix, axis_list):
                 if np.isclose(site.distance_to_axis, radius_unique):
                     csl_sites.append(layer.lattice[site.index])
                     csl_sites_coordinates.append(layer.lattice[site.index].coordinates)
-            print('csl_sites_coordinates=', csl_sites_coordinates)
             # third, calculate all possible distances(angles) between two sites of the same radius
             for first_site in csl_sites:
                 # choosing the second site
@@ -1303,8 +1302,8 @@ def main():
     upper_limit = 3
     crystal_matrix = generate_crystal_matrix(lattice_type, upper_limit)
 
-    # df_csl = sigma_generate(crystal_matrix, axis_list)
-    # df_csl.to_csv('csl.csv')
+    df_csl = sigma_generate(crystal_matrix, axis_list)
+    df_csl.to_csv('csl.csv')
     df_csl = pd.read_csv('csl.csv', index_col=None)
 
     # define a list of axes to be studied
